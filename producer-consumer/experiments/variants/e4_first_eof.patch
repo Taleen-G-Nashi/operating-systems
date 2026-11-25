@@ -1,0 +1,11 @@
+--- ../prod_cons.c	2026-11-02 06:57:12.517216179 +0000
++++ variants/e4_first_eof.c	2026-11-02 07:18:34.591348427 +0000
+@@ -299,7 +299,7 @@
+ 
+ 	for (;;) {
+ 		pthread_mutex_lock(&sh->qlock);
+-		while (sh->count == 0 && sh->prod_done < sh->nprod && !sh->failed)
++		while (sh->count == 0 && sh->prod_done < 1 && !sh->failed)
+ 			pthread_cond_wait(&sh->not_empty, &sh->qlock);
+ 		if (sh->failed || sh->count == 0) {   /* aborted, or drained & done */
+ 			pthread_mutex_unlock(&sh->qlock);

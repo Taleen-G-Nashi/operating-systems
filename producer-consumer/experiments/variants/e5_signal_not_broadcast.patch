@@ -1,0 +1,11 @@
+--- ../prod_cons.c	2026-11-02 06:57:12.517216179 +0000
++++ variants/e5_signal_not_broadcast.c	2026-11-02 07:18:34.596348459 +0000
+@@ -287,7 +287,7 @@
+ 	/* this producer is finished; the LAST one wakes every waiting consumer */
+ 	pthread_mutex_lock(&sh->qlock);
+ 	sh->prod_done++;
+-	if (sh->prod_done == sh->nprod) pthread_cond_broadcast(&sh->not_empty);
++	if (sh->prod_done == sh->nprod) pthread_cond_signal(&sh->not_empty);
+ 	pthread_mutex_unlock(&sh->qlock);
+ 	return NULL;
+ }

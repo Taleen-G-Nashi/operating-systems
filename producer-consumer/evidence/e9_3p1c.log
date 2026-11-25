@@ -1,0 +1,5 @@
+[timing] input=1293854 bytes chunks=1264 chunk=1024 qcap=16 P=3 C=1 elapsed=0.016822 s
+[timing] producer 0 produced 430 chunks
+[timing] producer 1 produced 413 chunks
+[timing] producer 2 produced 421 chunks
+[timing] consumer 0 consumed 1264 chunks

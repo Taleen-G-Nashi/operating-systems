@@ -1,0 +1,8 @@
+[timing] input=0 bytes chunks=0 chunk=65536 qcap=16 P=3 C=3 elapsed=0.001203 s
+[timing] producer 0 produced 0 chunks
+[timing] producer 1 produced 0 chunks
+[timing] producer 2 produced 0 chunks
+[timing] consumer 0 consumed 0 chunks
+[timing] consumer 1 consumed 0 chunks
+[timing] consumer 2 consumed 0 chunks
+empty rc=0

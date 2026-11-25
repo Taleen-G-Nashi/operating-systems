@@ -1,0 +1,14 @@
+
+/evidence/benchmark.txt
+
+
+# Compiled executable
+/prod_cons
+
+# Generated benchmark inputs
+/evidence/benchmark.txt
+/evidence/benchmark32.txt
+
+# Additional generated inputs
+/evidence/scale_32MB.txt
+/evidence/scale_256MB.txt

@@ -1,0 +1,19 @@
+== baseline (final implementation) ==
+baseline_2P2C: runs=100 ok=100 wrong_output=0 nonzero_exit=0 timeout=0   (P=2 C=2 chunk=61 qcap=2)
+baseline_1P4C_tiny: runs=200 ok=200 wrong_output=0 nonzero_exit=0 timeout=0   (P=1 C=4 chunk=65536 qcap=16)
+== E1 no lock on chunk counter ==
+e1_normal: runs=200 ok=0 wrong_output=0 nonzero_exit=200 timeout=0   (P=4 C=2 chunk=61 qcap=2)
+e1_tsan: runs=5 ok=0 wrong_output=0 nonzero_exit=5 timeout=0   (P=4 C=2 chunk=61 qcap=2)
+== E2 if instead of while ==
+e2_if_wait: runs=60 ok=56 wrong_output=0 nonzero_exit=0 timeout=4   (P=1 C=8 chunk=8 qcap=1)
+== E3 free after hand-off ==
+e3_plain: runs=100 ok=0 wrong_output=0 nonzero_exit=100 timeout=0   (P=1 C=1 chunk=61 qcap=2)
+e3_asan: runs=5 ok=0 wrong_output=0 nonzero_exit=5 timeout=0   (P=1 C=1 chunk=61 qcap=2)
+== E4 first producer's EOF = global EOF ==
+e4_first_eof: runs=200 ok=155 wrong_output=0 nonzero_exit=45 timeout=0   (P=2 C=2 chunk=61 qcap=2)
+== E5 signal instead of broadcast ==
+e5_signal: runs=10 ok=0 wrong_output=0 nonzero_exit=0 timeout=10   (P=1 C=4 chunk=65536 qcap=16)
+e5_signal_busy: runs=20 ok=11 wrong_output=0 nonzero_exit=0 timeout=9   (P=2 C=4 chunk=61 qcap=2)
+== E6 no stitching of words across chunks ==
+e6_chunk_big: runs=5 ok=5 wrong_output=0 nonzero_exit=0 timeout=0   (P=1 C=1 chunk=65536 qcap=16)
+e6_chunk_7: runs=5 ok=0 wrong_output=5 nonzero_exit=0 timeout=0   (P=1 C=1 chunk=7 qcap=16)

@@ -1,0 +1,59 @@
+=================================================================
+==1506064==ERROR: AddressSanitizer: heap-use-after-free on address 0x506000000020 at pc 0x615e724386d0 bp 0x7bccdadfecc0 sp 0x7bccdadfecb0
+READ of size 1 at 0x506000000020 thread T1
+    #0 0x615e724386cf in analyze_chunk variants/e3_free_after_handoff.c:150
+    #1 0x615e724386cf in consumer variants/e3_free_after_handoff.c:319
+    #2 0x7bccdee5ea41 in asan_thread_start ../../../../src/libsanitizer/asan/asan_interceptors.cpp:234
+    #3 0x7bccde29cb83 in start_thread nptl/pthread_create.c:447
+    #4 0x7bccde329ecb in clone3 ../sysdeps/unix/sysv/linux/x86_64/clone3.S:78
+
+0x506000000020 is located 0 bytes inside of 61-byte region [0x506000000020,0x50600000005d)
+freed by thread T2 here:
+    #0 0x7bccdeefc4d8 in free ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:52
+    #1 0x615e72435e0d in producer variants/e3_free_after_handoff.c:281
+
+previously allocated by thread T2 here:
+    #0 0x7bccdeefd9c7 in malloc ../../../../src/libsanitizer/asan/asan_malloc_linux.cpp:69
+    #1 0x615e7243560d in producer variants/e3_free_after_handoff.c:261
+
+Thread T1 created by T0 here:
+    #0 0x7bccdeef51f9 in pthread_create ../../../../src/libsanitizer/asan/asan_interceptors.cpp:245
+    #1 0x615e7243a61c in main variants/e3_free_after_handoff.c:438
+
+Thread T2 created by T0 here:
+    #0 0x7bccdeef51f9 in pthread_create ../../../../src/libsanitizer/asan/asan_interceptors.cpp:245
+    #1 0x615e7243a93e in main variants/e3_free_after_handoff.c:444
+
+SUMMARY: AddressSanitizer: heap-use-after-free variants/e3_free_after_handoff.c:150 in analyze_chunk
+Shadow bytes around the buggy address:
+  0x505ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x505ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x505ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x505fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0x505fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0x506000000000: fa fa fa fa[fd]fd fd fd fd fd fd fd fa fa fa fa
+  0x506000000080: fd fd fd fd fd fd fd fd fa fa fa fa fd fd fd fd
+  0x506000000100: fd fd fd fd fa fa fa fa 00 00 00 00 00 00 00 05
+  0x506000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x506000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+  0x506000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==1506064==ABORTING

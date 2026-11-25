@@ -1,0 +1,6 @@
+pid=11927  (variant e5_signal_not_broadcast, tiny.txt, 1P/4C) after 1 s
+process alive: yes
+tid=11927 state=S(sleeping) wchan=futex_do_wait
+tid=11929 state=S(sleeping) wchan=futex_do_wait
+tid=11931 state=S(sleeping) wchan=futex_do_wait
+tid=11932 state=S(sleeping) wchan=futex_do_wait

@@ -1,0 +1,13 @@
+--- ../prod_cons.c	2026-11-02 06:57:12.517216179 +0000
++++ variants/e1_nolock.c	2026-11-02 07:18:34.574348318 +0000
+@@ -248,10 +248,8 @@
+ 		if (is_failed(sh)) break;
+ 
+ 		/* reserve a chunk index (mutual exclusion on next_chunk) */
+-		pthread_mutex_lock(&sh->claim_lock);
+ 		size_t idx = (sh->next_chunk < sh->nchunks) ? sh->next_chunk++
+ 		                                            : (size_t)-1;
+-		pthread_mutex_unlock(&sh->claim_lock);
+ 		if (idx == (size_t)-1) break;              /* no work left for me */
+ 
+ 		off_t off = (off_t)idx * (off_t)sh->chunk;

@@ -1,0 +1,11 @@
+--- ../prod_cons.c	2026-11-02 06:57:12.517216179 +0000
++++ variants/e6_no_word_stitch.c	2026-11-02 07:18:34.602348498 +0000
+@@ -478,7 +478,7 @@
+ 		if (b->all_letters) {
+ 			carry_w += b->len;
+ 		} else {
+-			uint64_t w = carry_w + b->w_pre;
++			uint64_t w = b->w_pre;
+ 			if (w > 0 && hist_add(&total.words, w, 1)) bad = 1;
+ 			carry_w = b->w_suf;
+ 		}
